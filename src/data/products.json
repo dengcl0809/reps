@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Ensemble nike running os",
+    "price": "19.39",
+    "currency": "€",
+    "image": "../assets/38356dbf.jpg",
+    "link": "https://www.nike.com",
+    "category": "running"
+  },
+  {
+    "id": 2,
+    "name": "Tshirt bape(1)",
+    "price": "12.00",
+    "currency": "€",
+    "image": "../assets/a912e45c.jpg",
+    "link": "/products/bape-tee",
+    "category": "vetement"
+  },
+  {
+    "id": 3,
+    "name": "On chaussure",
+    "price": "48.12",
+    "currency": "€",
+    "image": "../assets/b39d6a77.jpg",
+    "link": "https://www.on-running.com",
+    "category": "shoes"
+  }
+]

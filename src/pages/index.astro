@@ -1,50 +1,134 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+// --- 顶部代码块 (Astro 服务端运行) ---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import rawData from '../data/products.json'; // 确保你的 json 里有 category 字段
+const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp,gif}');
+const products = await Promise.all(
+  rawData.map(async (item) => {
+    // 找到对应的图片导入函数
+    const importer = images[item.image];
+    
+    // 如果找到了图片，就执行导入；如果没找到，给个默认图或报错
+    let imgObj = null;
+    if (importer) {
+      const module = await importer();
+      imgObj = module.default;
+    } else {
+      console.warn(`找不到图片: ${item.image}`);
+    }
+
+    return {
+      ...item,
+      image: imgObj // 将图片对象覆盖原来的字符串路径
+    };
+  })
+);
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout title="Mr D Studio Shop">
+  <main class="shop-container">
+    <!-- 1. 搜索框 -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="please enter the product key words" />
+    </div>
+
+    <!-- 2. 分类筛选区 -->
+    <nav class="category-nav">
+      <!-- data-category 必须和 json 里的 category 字段对应 -->
+      <div class="cat-pill active" data-category="ALL">ALL</div>
+      <div class="cat-pill" data-category="HOT ITEMS">HOT ITEMS 🔥</div>
+      <div class="cat-pill" data-category="SHOES">SHOES 👟</div>
+      <div class="cat-pill" data-category="ETE">ETE ☀️</div>
+      <div class="cat-pill" data-category="RUNNING">RUNNING 🏃</div>
+      <div class="cat-pill" data-category="VETEMENT">VETEMENT 👕</div>
+    </nav>
+
+    <!-- 3. 商品列表容器 (给个 ID 方便 JS 查找) -->
+    <div id="product-grid" class="product-grid">
+      {products.map((product) => (
+        // 注意：这里我们给每个卡片包了一层 div，并加上了 data-属性，方便 JS 过滤
+        <div 
+          class="product-item" 
+          data-category={product.category} 
+          data-title={product.name.toLowerCase()}
+        >
+          <ProductCard product={product} />
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<!-- 4. 样式 (保持不变) -->
+<style>
+  .shop-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+  
+  /* 搜索框样式 */
+  .search-bar { margin-bottom: 20px; text-align: center; }
+  .search-bar input {
+    width: 100%; max-width: 600px; padding: 12px 20px;
+    border-radius: 25px; border: 1px solid #ddd; font-size: 16px; outline: none;
+  }
+
+  /* 分类导航样式 */
+  .category-nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+  .cat-pill {
+    padding: 8px 20px; border-radius: 20px; background: #f5f5f5; cursor: pointer;
+    font-weight: bold; color: #333; transition: all 0.3s; user-select: none;
+  }
+  .cat-pill:hover { background: #e0e0e0; }
+  .cat-pill.active { background: #000; color: #fff; }
+
+  /* 网格布局 */
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+</style>
+
+<!-- 5. 交互脚本 (关键部分) -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.cat-pill');
+    const productItems = document.querySelectorAll('.product-item');
+
+    let currentCategory = 'ALL';
+
+    // 核心过滤函数
+    function filterProducts() {
+      const keyword = searchInput.value.toLowerCase().trim();
+
+      productItems.forEach(item => {
+        const itemCategory = item.getAttribute('data-category');
+        const itemTitle = item.getAttribute('data-title');
+
+        // 判断条件：
+        // 1. 分类匹配 (如果是 ALL 或者等于当前选中分类)
+        // 2. 标题包含关键词
+        const matchCategory = currentCategory === 'ALL' || itemCategory === currentCategory;
+        const matchKeyword = itemTitle.includes(keyword);
+
+        if (matchCategory && matchKeyword) {
+          item.style.display = 'block'; // 显示
+        } else {
+          item.style.display = 'none';  // 隐藏
+        }
+      });
+    }
+
+    // 监听分类点击
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // 切换 Active 样式
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // 更新当前分类并执行过滤
+        currentCategory = btn.getAttribute('data-category');
+        filterProducts();
+      });
+    });
+
+    // 监听搜索输入
+    searchInput.addEventListener('input', filterProducts);
+  });
+</script>
