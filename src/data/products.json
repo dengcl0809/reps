@@ -2,64 +2,64 @@
   {
     "id": 1,
     "name": "Maillot de l'équipe nationale de la Coupe du monde 2026",
-    "price": "45.00",
-    "currency": "¥",
+    "priceCny": "45.00",
+    "priceEur": "5.80",
     "image": "../assets/jessy.png",
     "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7719553640?inviteCode=I7tA7h",
-    "category": "VETEMENT"
+    "category": "Sports"
   },
   {
     "id": 2,
     "name": "Moncle jacket coat for men",
-    "price": "220.00",
-    "currency": "¥",
+    "priceCny": "220.00",
+    "priceEur": "31.60",
     "image": "../assets/moncle.png",
-    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7719553640?inviteCode=I7tA7h",
-    "category": "VETEMENT"
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7729492878?inviteCode=I7tA7h",
+    "category": "Jackets"
   },
   {
     "id": 3,
     "name": "Casablanca High quality Tee",
-    "price": "79.00",
-    "currency": "¥",
+    "priceCny": "79.00",
+    "priceEur": "11.35",
     "image": "../assets/asablanca.jpg",
     "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7751726070?inviteCode=I7tA7h",
-    "category": "VETEMENT"
+    "category": "T-Shirts"
   },
   {
     "id": 4,
     "name": "Nike Mind 001",
-    "price": "159.00",
-    "currency": "¥",
+    "priceCny": "159.00",
+    "priceEur": "22.54",
     "image": "../assets/nikemind001.jpg",
     "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7712498531?inviteCode=I7tA7h",
-    "category": "SHOES"
+    "category": "Shoes"
   },
   {
     "id": 5,
     "name": "Carhartt High quality Tee",
-    "price": "69.00",
-    "currency": "¥",
+    "priceCny": "159.00",
+    "priceEur": "69.00",
     "image": "../assets/carhart.jpg",
     "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7757649473?inviteCode=I7tA7h",
-    "category": "VETEMENT"
+    "category": "T-Shirts"
   },
   {
     "id": 6,
     "name": "Ralph Lauren High quality Tee",
-    "price": "59.00",
-    "currency": "¥",
+    "priceCny": "59.00",
+    "priceEur": "8.47",
     "image": "../assets/polo.jpg",
     "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7757730501?inviteCode=I7tA7h",
-    "category": "VETEMENT"
+    "category": "T-Shirts"
   },
   {
     "id": 7,
     "name": "Nouveau Maillot PSG Champion en Titre 2026/27",
-    "price": "69.00",
-    "currency": "¥",
+    "priceCny": "69.00",
+    "priceEur": "9.91",
     "image": "../assets/back2back.jpg",
     "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7777587479?inviteCode=I7tA7h",
-    "category": "VETEMENT"
+    "category": "Sports"
   }
 ]

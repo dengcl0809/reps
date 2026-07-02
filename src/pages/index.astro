@@ -2,52 +2,89 @@
 // --- 顶部代码块 (Astro 服务端运行) ---
 import Layout from '../layouts/Layout.astro';
 import ProductCard from '../components/ProductCard.astro';
-import rawData from '../data/products.json'; // 确保你的 json 里有 category 字段
+import rawData from '../data/products.json'; 
+import '../styles/global.css';
+
+// 1. 配置分类数据
+// 注意：这里的 icon 路径必须对应 public/icons/ 下的文件名
+const categories = [
+  { name: 'All', link: '/', icon: '/icons/all.svg' },
+  { name: 'Shoes', link: '/shoes', icon: '/icons/shoes.svg' },
+  { name: 'Clothes', link: '/jackets', icon: '/icons/fushi.svg' },
+  { name: 'Sports', link: '/shirts', icon: '/icons/yundong.svg' },
+  { name: 'T-Shirts', link: '/t-shirts', icon: '/icons/duanxiu.svg' },
+  { name: 'Pants', link: '/pants', icon: '/icons/kuzi.svg' },
+  { name: 'Jackets', link: '/accessories', icon: '/icons/jiake.svg' },
+  { name: 'Electronics', link: '/electronics', icon: '/icons/shuma.svg' },
+  { name: 'Jewelry', link: '/jewelry', icon: '/icons/zhubao.svg' },
+  { name: 'Bags', link: '/bags', icon: '/icons/xiangbao.svg' },
+  { name: 'Hoodie', link: '/hoodie', icon: '/icons/hoodie.svg' },
+  { name: 'Down jacket', link: '/down-jacket', icon: '/icons/downjacket.svg' },
+  { name: 'Tracksuits', link: '/tracksuits', icon: '/icons/taozhuang.svg' }
+];
+
+// 处理商品图片 (保持你原来的逻辑)
 const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp,gif}');
 const products = await Promise.all(
   rawData.map(async (item) => {
-    // 找到对应的图片导入函数
     const importer = images[item.image];
-    
-    // 如果找到了图片，就执行导入；如果没找到，给个默认图或报错
     let imgObj = null;
     if (importer) {
       const module = await importer();
       imgObj = module.default;
     } else {
-      console.warn(`找不到图片: ${item.image}`);
+      // 如果找不到图，给个占位符或者不处理
+      console.warn(`Warning: Image not found for ${item.image}`);
     }
-
-    return {
-      ...item,
-      image: imgObj // 将图片对象覆盖原来的字符串路径
-    };
+    return { ...item, image: imgObj };
   })
 );
+console.log('🔍 完整的商品数据:', JSON.stringify(products, null, 2)); 
 ---
 
 <Layout title="Mr D Studio Shop">
   <main class="shop-container">
+    
     <!-- 1. 搜索框 -->
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="please enter the product key words" />
+    <div class="search-container">
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search Nike, Jordan, Supreme..." />
+      </div>
     </div>
 
-    <!-- 2. 分类筛选区 -->
-    <nav class="category-nav">
-      <!-- data-category 必须和 json 里的 category 字段对应 -->
-      <div class="cat-pill active" data-category="ALL">ALL</div>
-      <div class="cat-pill" data-category="HOT ITEMS">HOT ITEMS 🔥</div>
-      <div class="cat-pill" data-category="SHOES">SHOES 👟</div>
-      <div class="cat-pill" data-category="ETE">ETE ☀️</div>
-      <div class="cat-pill" data-category="RUNNING">RUNNING 🏃</div>
-      <div class="cat-pill" data-category="VETEMENT">VETEMENT 👕</div>
-    </nav>
+    <!-- 2. 分类导航区 -->
+    <div class="nav-wrapper">
+      <!-- 左箭头 -->
+      <button class="scroll-btn left" id="scrollLeftBtn">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
 
-    <!-- 3. 商品列表容器 (给个 ID 方便 JS 查找) -->
+      <!-- 滚动容器 -->
+      <div class="category-scroll-container" id="categoryContainer">
+        {categories.map((cat) => (
+          <a href={cat.link} class={`cat-item ${cat.name === 'All' ? 'active' : ''}`} data-category={cat.name === 'All' ? 'ALL' : cat.name}>
+            <div class="icon-circle">
+              <!-- 关键点：确保路径以 / 开头，指向 public 文件夹 -->
+              <img src={cat.icon} alt={cat.name} class="cat-icon" loading="lazy" />
+            </div>
+            <span class="cat-name">{cat.name}</span>
+          </a>
+        ))}
+      </div>
+
+      <!-- 右箭头 -->
+      <button class="scroll-btn right" id="scrollRightBtn">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+
+    <!-- 3. 商品列表 -->
     <div id="product-grid" class="product-grid">
       {products.map((product) => (
-        // 注意：这里我们给每个卡片包了一层 div，并加上了 data-属性，方便 JS 过滤
         <div 
           class="product-item" 
           data-category={product.category} 
@@ -60,75 +97,157 @@ const products = await Promise.all(
   </main>
 </Layout>
 
-<!-- 4. 样式 (保持不变) -->
-<style>
-  .shop-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-  
-  /* 搜索框样式 */
-  .search-bar { margin-bottom: 20px; text-align: center; }
-  .search-bar input {
-    width: 100%; max-width: 600px; padding: 12px 20px;
-    border-radius: 25px; border: 1px solid #ddd; font-size: 16px; outline: none;
-  }
-
-  /* 分类导航样式 */
-  .category-nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-  .cat-pill {
-    padding: 8px 20px; border-radius: 20px; background: #f5f5f5; cursor: pointer;
-    font-weight: bold; color: #333; transition: all 0.3s; user-select: none;
-  }
-  .cat-pill:hover { background: #e0e0e0; }
-  .cat-pill.active { background: #000; color: #fff; }
-
-  /* 网格布局 */
-  .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
-</style>
-
-<!-- 5. 交互脚本 (关键部分) -->
+<!-- 4. 交互脚本 (修复了滚动和筛选逻辑) -->
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('searchInput');
-    const filterBtns = document.querySelectorAll('.cat-pill');
-    const productItems = document.querySelectorAll('.product-item');
+    // --- 滚动逻辑 ---
+    const container = document.getElementById('categoryContainer');
+    const leftBtn = document.getElementById('scrollLeftBtn');
+    const rightBtn = document.getElementById('scrollRightBtn');
 
+    if (container && leftBtn && rightBtn) {
+      // 每次点击滚动的距离 (大约是一个图标的宽度 + 间距)
+      const scrollAmount = 200; 
+
+      leftBtn.addEventListener('click', () => {
+        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+
+      rightBtn.addEventListener('click', () => {
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      });
+    }
+
+    // --- 筛选逻辑 (保留你原有的逻辑) ---
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.cat-item'); // 注意这里改成了 .cat-item
+    const productItems = document.querySelectorAll('.product-item');
     let currentCategory = 'ALL';
 
-    // 核心过滤函数
     function filterProducts() {
-      const keyword = searchInput.value.toLowerCase().trim();
+      const keyword = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
       productItems.forEach(item => {
         const itemCategory = item.getAttribute('data-category');
         const itemTitle = item.getAttribute('data-title');
 
-        // 判断条件：
-        // 1. 分类匹配 (如果是 ALL 或者等于当前选中分类)
-        // 2. 标题包含关键词
+        // 简单的模糊匹配逻辑
         const matchCategory = currentCategory === 'ALL' || itemCategory === currentCategory;
-        const matchKeyword = itemTitle.includes(keyword);
+        const matchKeyword = !keyword || (itemTitle && itemTitle.includes(keyword));
 
         if (matchCategory && matchKeyword) {
-          item.style.display = 'block'; // 显示
+          item.style.display = 'block'; 
         } else {
-          item.style.display = 'none';  // 隐藏
+          item.style.display = 'none';  
         }
       });
     }
 
-    // 监听分类点击
+    // 绑定分类点击事件
     filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault(); // 阻止跳转，改为前端筛选
+        
         // 切换 Active 样式
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        // 更新当前分类并执行过滤
+        // 更新分类
         currentCategory = btn.getAttribute('data-category');
         filterProducts();
       });
     });
 
-    // 监听搜索输入
-    searchInput.addEventListener('input', filterProducts);
+    // 绑定搜索事件
+    if(searchInput) {
+        searchInput.addEventListener('input', filterProducts);
+    }
   });
 </script>
+
+<style>
+  /* 全局容器 */
+  .shop-container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 20px; 
+  }
+  
+  /* --- 搜索框样式 --- */
+  .search-container { display: flex; justify-content: center; padding: 20px 0; }
+  .search-box { position: relative; width: 100%; max-width: 600px; }
+  .search-box input {
+    width: 100%; padding: 14px 20px 14px 50px; border-radius: 30px;
+    border: 1px solid var(--border-color, #333); background-color: #1a1a1a;
+    color: white; font-size: 1rem; outline: none; transition: border-color 0.3s;
+  }
+  .search-box input:focus { border-color: var(--accent-color, #fff); }
+  .search-icon {
+    position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+    width: 20px; height: 20px; color: #888;
+  }
+
+  /* --- 分类导航样式 --- */
+  .nav-wrapper { position: relative; display: flex; align-items: center; padding: 0 10px; }
+  
+  .category-scroll-container {
+    display: flex; gap: 20px; overflow-x: auto; scroll-behavior: smooth;
+    padding: 10px 10px; /* 减少左右padding，让箭头更靠近 */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE */
+    flex-grow: 1; /* 占据中间剩余空间 */
+  }
+  .category-scroll-container::-webkit-scrollbar { display: none; }
+
+  .cat-item {
+    display: flex; flex-direction: column; align-items: center; text-decoration: none;
+    min-width: 70px; cursor: pointer; transition: transform 0.2s;
+  }
+  
+  .icon-circle {
+    width: 64px; height: 64px; border-radius: 50%; background-color: #16161e;
+    display: flex; justify-content: center; align-items: center;
+    margin-bottom: 8px; border: 1px solid #2a2a35; transition: all 0.3s ease;
+  }
+
+  .cat-icon {
+    width: 32px; height: 32px; object-fit: contain;
+    filter: brightness(0) invert(1); 
+  }
+
+  .cat-name { color: #888; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; white-space: nowrap;}
+
+  /* 激活/悬停状态 */
+  .cat-item.active .icon-circle, .cat-item:hover .icon-circle {
+    background-color: #252530; border-color: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  .cat-item.active .cat-name, .cat-item:hover .cat-name { color: #fff; }
+
+  /* --- 左右滚动按钮 --- */
+  .scroll-btn {
+    background: #1a1a1a; border: 1px solid #333; color: white;
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    cursor: pointer; z-index: 10; flex-shrink: 0; transition: background 0.2s;
+  }
+  .scroll-btn:hover { background: #333; }
+  .scroll-btn.left { margin-right: 10px;margin-top: -20px; }
+  .scroll-btn.right { margin-left: 10px;margin-top: -20px; }
+
+  /* --- 商品网格 --- */
+  .product-grid { 
+    display: grid; gap: 20px; 
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+    margin-top: 30px;
+  }
+
+  @media (max-width: 640px) {
+    .shop-container { padding: 10px; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .icon-circle { width: 50px; height: 50px; }
+    .cat-icon { width: 24px; height: 24px; }
+    .cat-name { font-size: 0.75rem; }
+    /* 手机端隐藏箭头，直接手指滑动 */
+    .scroll-btn { display: none; } 
+  }
+</style>

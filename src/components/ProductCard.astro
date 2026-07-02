@@ -12,93 +12,115 @@ export interface Product {
 
 const { product } = Astro.props;
 ---
-
-<!-- 整个卡片被包裹在 <a> 标签中，实现点击跳转 -->
-<a href={product.link} class="card" target="_blank">
-  <div class="img-box">
-        <img src={product.image.src} alt={product.title} />
-  </div>
+<!-- 1. 最外层容器：负责布局和定位 (不需要 href) -->
+<div class="product-card-wrapper">
   
-  <div class="info">
-    <h3 class="name">{product.name}</h3>
-    <p class="price">{product.currency}{product.price}</p>       
-  </div>
-</a>
+  <a href={product.yupooLink} class="yupoo-link" target="_blank" title="查看Yupoo相册">
+    <img src="/icons/Yupoo.svg" alt="Yupoo" class="yupoo-icon" />
+  </svg>
+  </a>
+
+  <!-- 3. 主卡片链接：只包裹内容 -->
+  <a href={product.link} class="card" target="_blank">
+    <div class="img-box">
+      <img src={product.image.src} alt={product.name} />
+    </div>
+    <div class="info">
+      <h3 class="name">{product.name}</h3>
+      <p class="price">￥{product.priceCny} ≈ €{product.priceEur}</p>       
+    </div>
+  </a>
+
+</div>
 
 <style>
-  .card {
-    display: block;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-    transition: transform 0.2s, box-shadow 0.2s;
-    height: 100%;
-    border: 1px solid transparent;
-  }
+.product-card-wrapper {
+  position: relative; 
+  display: block;
+  height: 100%;      
+}
 
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    border-color: #eee;
-  }
-  .img-box img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover; /* 保证图片填满且不变形 */
-    border-radius: 8px 8px 0 0;
-  }
-  .img-box {
-    width: 100%;
-    aspect-ratio: 1 / 1; /* 保持正方形图片 */
-    background-color: #f4f4f4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
+.card {
+  display: block;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;       /* 填满外层容器 */
+  border: 1px solid transparent;
+}
 
-  .img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 或者是 contain，看图片风格 */
-  }
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  border-color: #eee;
+}
 
-  .info {
-    padding: 15px;
-  }
+.yupoo-link {
+  position: absolute; 
+  top: 10px;        
+  right: 10px;      
+  z-index: 20;       
+  color: white;
+  padding: 6px;      
+  border-radius: 50%;
+  width: 30px;        
+  height: 30px;      
+  cursor: pointer; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  backdrop-filter: blur(4px); 
+  transition: all 0.2s ease;
+}
 
-  .name {
-    font-size: 0.95rem;
-    margin: 0 0 8px 0;
-    color: #333;
-    line-height: 1.4;
-    height: 2.8em; /* 限制两行高度 */
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
+.yupoo-link:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
 
-  .price {
-    color: #ff4757; /* 红色价格 */
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin: 0 0 15px 0;
-  }
+.yupoo-link img {
+  font-size: 14px;
+  line-height: 1;
+  width: 30px;   /* 图标本身的大小，约为容器的一半 */
+  height: 30px;
+  display: block;
+}
 
-  .action-row {
-    border-top: 1px solid #f0f0f0;
-    padding-top: 10px;
-    text-align: center;
-  }
-
-  .qc-badge {
-    font-size: 0.8rem;
-    color: #666;
-    background: #f9f9f9;
-    padding: 4px 10px;
-    border-radius: 4px;
-    display: inline-block;
-  }
+.img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.img-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.info {
+  padding: 15px;
+}
+.name {
+  font-size: 0.95rem;
+  margin: 0 0 8px 0;
+  color: #333;
+  line-height: 1.4;
+  height: 2.8em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.price {
+  color: #ff4757;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0; 
+}
 </style>

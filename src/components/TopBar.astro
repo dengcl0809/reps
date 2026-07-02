@@ -1,0 +1,136 @@
+---
+// src/components/TopBar.astro
+---
+
+<!-- 1. 顶部黑色公告栏 -->
+<div class="top-announcement">
+  <div class="container">
+    <p>
+      Discord: <strong>nova_store_168</strong> &nbsp;·&nbsp; 
+      WhatsApp: <strong>+852 46727504 </strong> &nbsp;·&nbsp; 
+      <a href="#" class="highlight-link">DM for cooperation</a>
+    </p>
+  </div>
+</div>
+
+<!-- 2. 主导航栏 -->
+<header class="main-header">
+  <div class="container header-content">
+    <!-- 左侧 Logo -->
+    <div class="logo">Mr'D Studio</div>
+
+    <!-- 中间 导航菜单 -->
+    <nav class="nav-links">
+      <a href="/" class="active">Home</a>
+      <a href="https://navo-store.x.yupoo.com/albums/235687180?uid=1&isSubCate=false&referrercate=5208620"  target="_blank">How to Buy</a>
+    </nav>
+
+    <!-- 右侧 社交按钮 -->
+    <div class="social-links">
+      <a href="https://discord.gg/Dg6uZUrVAY"  target="_blank">Discord</a>
+      <a href="https://navo-store.x.yupoo.com/"  target="_blank">Yupoo</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* 全局容器宽度控制 */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* --- 顶部公告栏样式 --- */
+  .top-announcement {
+    background-color: #0f0f0f; /* 非常深的背景色 */
+    color: #888; /* 灰色文字 */
+    font-size: 12px;
+    padding: 8px 0;
+    text-align: center;
+    border-bottom: 1px solid #222;
+  }
+
+  .top-announcement strong {
+    color: #ccc; /* 名字稍微亮一点 */
+    font-weight: 600;
+  }
+
+  .highlight-link {
+    color: #a5b4fc; /* 淡紫色高亮，类似截图 */
+    text-decoration: none;
+  }
+
+  /* --- 主导航栏样式 --- */
+  .main-header {
+    background-color: #000; /* 纯黑背景 */
+    padding: 20px 0;
+    border-bottom: 1px solid #222;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between; /* 左中右分布 */
+    align-items: center;
+  }
+
+  /* Logo */
+  .logo {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* 中间菜单 */
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    background: #1a1a1a; /* 深灰色胶囊背景 */
+    padding: 8px 20px;
+    border-radius: 999px; /* 圆角 */
+  }
+
+  .nav-links a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: #fff; /* 悬停变白 */
+  }
+
+  /* 右侧链接 */
+  .social-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .social-links a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .social-links a:hover {
+    color: #fff;
+  }
+
+  /* 移动端简单适配 (可选) */
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      gap: 15px;
+    }
+    .nav-links {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
