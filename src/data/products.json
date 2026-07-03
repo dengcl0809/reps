@@ -5,61 +5,286 @@
     "priceCny": "45.00",
     "priceEur": "5.80",
     "image": "../assets/jessy.png",
-    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7719553640?inviteCode=I7tA7h",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7791909254?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/categories/5171792",
     "category": "Sports"
   },
   {
     "id": 2,
     "name": "Moncle jacket coat for men",
     "priceCny": "220.00",
-    "priceEur": "31.60",
+    "priceEur": "28.30",
     "image": "../assets/moncle.png",
-    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7729492878?inviteCode=I7tA7h",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7729492878?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/235508434?uid=1&isSubCate=true&referrercate=864536",
     "category": "Jackets"
   },
   {
     "id": 3,
     "name": "Casablanca High quality Tee",
     "priceCny": "79.00",
-    "priceEur": "11.35",
+    "priceEur": "10.17",
     "image": "../assets/asablanca.jpg",
-    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7751726070?inviteCode=I7tA7h",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7751726070?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/categories/5199201",
     "category": "T-Shirts"
   },
   {
     "id": 4,
     "name": "Nike Mind 001",
     "priceCny": "159.00",
-    "priceEur": "22.54",
+    "priceEur": "20.40",
     "image": "../assets/nikemind001.jpg",
-    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7712498531?inviteCode=I7tA7h",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7712498531?inviteCode=8pHUxw",
     "category": "Shoes"
   },
   {
     "id": 5,
     "name": "Carhartt High quality Tee",
-    "priceCny": "159.00",
-    "priceEur": "9.91",
+    "priceCny": "69.00",
+    "priceEur": "8.88",
     "image": "../assets/carhart.jpg",
-    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7757649473?inviteCode=I7tA7h",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7757649473?inviteCode=8pHUxw",
     "category": "T-Shirts"
   },
   {
     "id": 6,
     "name": "Ralph Lauren High quality Tee",
     "priceCny": "59.00",
-    "priceEur": "8.47",
+    "priceEur": "7.50",
     "image": "../assets/polo.jpg",
-    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7757730501?inviteCode=I7tA7h",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7757730501?inviteCode=8pHUxw",
     "category": "T-Shirts"
   },
   {
     "id": 7,
     "name": "Nouveau Maillot PSG Champion en Titre 2026/27",
     "priceCny": "69.00",
-    "priceEur": "9.91",
+    "priceEur": "8.88",
     "image": "../assets/back2back.jpg",
-    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7777587479?inviteCode=I7tA7h",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7777587479?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/categories/5225488",
     "category": "Sports"
+  },
+  {
+    "id": 7,
+    "name": "Chrome heart 100% Cotton High quality Tee",
+    "priceCny": "98.00",
+    "priceEur": "12.62",
+    "image": "../assets/chrome.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7710683483?inviteCode=8pHUxw",
+    "category": "T-Shirts"
+  },
+  {
+    "id": 7,
+    "name": "Chrome 100% Cotton High quality Tee",
+    "priceCny": "98.00",
+    "priceEur": "12.62",
+    "image": "../assets/chrome1.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7713770056?inviteCode=8pHUxw",
+    "category": "T-Shirts"
+  },
+  {
+    "id": 7,
+    "name": "GALLERY DEPT 100% Cotton High quality Tee",
+    "priceCny": "69.00",
+    "priceEur": "10.17",
+    "image": "../assets/dept.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7634215416?inviteCode=8pHUxw",
+    "category": "T-Shirts"
+  },
+  {
+    "id": 7,
+    "name": "Ralph Lauren High quality Tee",
+    "priceCny": "118.00",
+    "priceEur": "15.19",
+    "image": "../assets/polo1.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7629651858?inviteCode=8pHUxw",
+    "category": "Clothes"
+  },
+  {
+    "id": 7,
+    "name": "Ralph Lauren High quality Polo NFC",
+    "priceCny": "79.00",
+    "priceEur": "10.17",
+    "image": "../assets/nlpolo.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7616036209?inviteCode=8pHUxw",
+    "category": "Clothes"
+  },
+  {
+    "id": 7,
+    "name": "Stussy High quality Tee",
+    "priceCny": "69.00",
+    "priceEur": "8.88",
+    "image": "../assets/stussy.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7777587479?inviteCode=8pHUxw",
+    "category": "T-Shirts"
+  },
+  {
+    "id": 7,
+    "name": "C.P Company High quality Hoodie",
+    "priceCny": "69.00",
+    "priceEur": "8.88",
+    "image": "../assets/ompany.png",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7705058412?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/categories/5187389",
+    "category": "Clothes"
+  },
+  {
+    "id": 7,
+    "name": "Mystery Jersey",
+    "priceCny": "19.90",
+    "priceEur": "2.56",
+    "image": "../assets/mysteryersey.png",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7701415555?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/categories/5171792",
+    "category": "Sports"
+  },
+  {
+    "id": 7,
+    "name": "THE NORTH FACE High quality Jackets",
+    "priceCny": "249.00",
+    "priceEur": "32.06",
+    "image": "../assets/tnf.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7704250266?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/232490580?uid=1&isSubCate=false&referrercate=5187393",
+    "category": "Jackets"
+  },
+  {
+    "id": 7,
+    "name": "Stone Island High quality Hoodie",
+    "priceCny": "69.00",
+    "priceEur": "8.88",
+    "image": "../assets/shitou.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7668011989?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/230887536?uid=1&isSubCate=false&referrercate=5174952",
+    "category": "Hoodie"
+  },
+  {
+    "id": 7,
+    "name": "ESSENTIALS FOG High quality Hoodie",
+    "priceCny": "129.00",
+    "priceEur": "16.61",
+    "image": "../assets/ess.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7663827907?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/243075928?uid=1&isSubCate=false&referrercate=5113460",
+    "category": "Hoodie"
+  },
+  {
+    "id": 7,
+    "name": "Chrome heart High quality Glasses",
+    "priceCny": "19.50",
+    "priceEur": "2.44",
+    "image": "../assets/Glasses.png",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7616062041?inviteCode=8pHUxw",
+    "category": "Jewelry"
+  },
+  {
+    "id": 7,
+    "name": "Heart-embroidered High quality sweater",
+    "priceCny": "129.00",
+    "priceEur": "16.61",
+    "image": "../assets/love.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7619039962?inviteCode=8pHUxw",
+    "category": "Clothes"
+  },
+  {
+    "id": 7,
+    "name": "Moncle Palm Moose",
+    "priceCny": "389.00",
+    "priceEur": "50.01",
+    "image": "../assets/moncle.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7618257668?inviteCode=8pHUxw",
+    "category": "Down jacket"
+  },
+  {
+    "id": 7,
+    "name": "Nike Running High quality Set",
+    "priceCny": "110.00",
+    "priceEur": "14.16",
+    "image": "../assets/dc3aeb2f.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7787279170?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/241720050?uid=1&isSubCate=false&referrercate=5172105",
+    "category": "Tracksuits"
+  },
+  {
+    "id": 7,
+    "name": "FEAR OF GOD ESSENTIALS 1977 High quality Hoodie",
+    "priceCny": "189.00",
+    "priceEur": "24.33",
+    "image": "../assets/f77ad798.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7803125774?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/243077440?uid=1&isSubCate=true&referrercate=919923",
+    "category": "Hoodie"
+  },
+  {
+    "id": 7,
+    "name": "FEAR OF GOD ESSENTIALS 1977 High quality Tee",
+    "priceCny": "98.00",
+    "priceEur": "12.62",
+    "image": "../assets/db087b10.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7777587479?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/243074938?uid=1&isSubCate=true&referrercate=919920",
+    "category": "T-Shirts"
+  },
+  {
+    "id": 7,
+    "name": "FEAR OF GOD ESSENTIALS 1977 High quality Tee",
+    "priceCny": "98.00",
+    "priceEur": "12.62",
+    "image": "../assets/2773a1aa.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7792095952?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/243074938?uid=1&isSubCate=true&referrercate=919920",
+    "category": "T-Shirts"
+  },
+  {
+    "id": 7,
+    "name": "FEAR OF GOD ESSENTIALS 1977 High quality Shorts",
+    "priceCny": "69.00",
+    "priceEur": "8.88",
+    "image": "../assets/ebd7747e.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7792095952?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/243074938?uid=1&isSubCate=true&referrercate=919920",
+    "category": "Pants"
+  },
+  {
+    "id": 7,
+    "name": "BURBERRY High quality Shorts",
+    "priceCny": "149.00",
+    "priceEur": "19.18",
+    "image": "../assets/aab69391.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7786077566?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/241413402?uid=1&isSubCate=false&referrercate=5248270",
+    "category": "Pants"
+  },
+  {
+    "id": 7,
+    "name": "BURBERRY High quality Tracksuits",
+    "priceCny": "225.00",
+    "priceEur": "28.97",
+    "image": "../assets/487bb8da.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7794432683?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/241410750?uid=1&isSubCate=true&referrercate=907135",
+    "category": "Tracksuits"
+  },
+  {
+    "id": 7,
+    "name": "BURBERRY High quality Tracksuits",
+    "priceCny": "225.00",
+    "priceEur": "28.97",
+    "image": "../assets/b3d763a2.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7797434764?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/241410833?uid=1&isSubCate=true&referrercate=907135",
+    "category": "Tracksuits"
+  },
+  {
+    "id": 7,
+    "name": "BURBERRY High quality Tracksuits",
+    "priceCny": "225.00",
+    "priceEur": "28.97",
+    "image": "../assets/ce22fa2f.jpg",
+    "link": "https://www.bbdbuyeu.com/goods/WEIDIAN/7797493610?inviteCode=8pHUxw",
+    "yupooLink": "https://navo-store.x.yupoo.com/albums/241411343?uid=1&isSubCate=true&referrercate=907135",
+    "category": "Tracksuits"
   }
 ]
