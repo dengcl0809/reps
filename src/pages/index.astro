@@ -38,14 +38,24 @@ const products = await Promise.all(
     }
     return { ...item, image: imgObj };
   })
-);
-console.log('🔍 完整的商品数据:', JSON.stringify(products, null, 2)); 
+); 
 ---
 
 <Layout title="Mr D Studio Shop">
+<!-- 全宽 Banner -->
+<div class="full-width-banner">
+    <div class="banner-content">
+        <h1>Mr'D Studio</h1>
+        <p>Dress like a gentleman, live like an artist！</p>
+        <div class="platform-tags">
+          <a href="https://navo-store.x.yupoo.com/albums/235687180?uid=1&isSubCate=false&referrercate=5208620"  target="_blank">How to Buy</a>
+          <a href="https://navo-store.x.yupoo.com/"  target="_blank">Yupoo</a>
+          <a href="https://discord.gg/Dg6uZUrVAY"  target="_blank">Discord</a>
+        </div>
+    </div>
+</div>
   <main class="shop-container">
-    
-    <!-- 1. 搜索框 -->
+    <!-- 2. 搜索框 -->
     <div class="search-container">
       <div class="search-box">
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -250,4 +260,58 @@ console.log('🔍 完整的商品数据:', JSON.stringify(products, null, 2));
     /* 手机端隐藏箭头，直接手指滑动 */
     .scroll-btn { display: none; } 
   }
+/* --- 全宽 Banner 样式 --- */
+.full-width-banner {
+    /* 核心代码：强制占满屏幕宽度 */
+    width: 100vw; 
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    
+    /* 高度设置：根据你的需求调整，例如 400px, 500px 或 60vh */
+    height: 500px; 
+    
+    /* 背景图设置 */
+    background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop'); /* 这是一个仓库物流风格的示例图片 */
+    background-size: cover;
+    background-position: center;
+    
+    /* 文字居中布局 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* 添加一个黑色遮罩，让文字更清晰 */
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5); 
+}
+
+.banner-content h1 {
+    color: #ffffff;
+    font-size: 3rem; /* 大标题 */
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.banner-content p {
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+.platform-tags a {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 5px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    color: white;
+    font-size: 0.9rem;
+    background: rgba(0,0,0,0.3);
+}
+  
 </style>
