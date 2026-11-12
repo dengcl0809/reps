@@ -8,6 +8,7 @@ export interface Product {
   currency: string;
   image: ImageMetadata;
   link: string; // 跳转链接
+  originalLink?: string; // 原始商品链接（没有则不显示按钮）
 }
 
 const { product } = Astro.props;
@@ -17,19 +18,31 @@ const { product } = Astro.props;
   
   <a href={product.yupooLink} class="yupoo-link" target="_blank" title="查看Yupoo相册">
     <img src="/icons/Yupoo.svg" alt="Yupoo" class="yupoo-icon" />
-  </svg>
   </a>
 
-  <!-- 3. 主卡片链接：只包裹内容 -->
-  <a href={product.link} class="card" target="_blank">
-    <div class="img-box">
-      <img src={product.image.src} alt={product.name} />
+  <!-- 3. 卡片：主链接只覆盖图片和名称，底部行放价格和 Original link -->
+  <div class="card">
+    <a href={product.link} class="card-link" target="_blank">
+      <div class="img-box">
+        <img src={product.image.src} alt={product.name} />
+      </div>
+      <div class="info">
+        <h3 class="name">{product.name}</h3>
+      </div>
+    </a>
+    <div class="card-footer">
+      <p class="price">€{product.priceEur}</p>
+      {product.originalLink && (
+        <a href={product.originalLink} class="original-link" target="_blank" rel="noopener" title="查看原始商品链接">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          <span>Original link</span>
+        </a>
+      )}
     </div>
-    <div class="info">
-      <h3 class="name">{product.name}</h3>
-      <p class="price">€{product.priceEur}</p>       
-    </div>
-  </a>
+  </div>
 
 </div>
 
@@ -55,6 +68,20 @@ const { product } = Astro.props;
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.08);
   border-color: #eee;
+}
+
+.card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 15px 15px;
 }
 
 .yupoo-link {
@@ -104,11 +131,11 @@ const { product } = Astro.props;
   overflow: hidden;
 }
 .info {
-  padding: 15px;
+  padding: 15px 15px 12px;
 }
 .name {
   font-size: 0.95rem;
-  margin: 0 0 8px 0;
+  margin: 0;
   color: #333;
   line-height: 1.4;
   height: 2.8em;
@@ -122,5 +149,27 @@ const { product } = Astro.props;
   font-weight: bold;
   font-size: 1.1rem;
   margin: 0; 
+}
+.original-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: #e8590c;
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid #ffd8c2;
+  border-radius: 999px;
+  background: #fff7f0;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.original-link:hover {
+  background: #ffefe3;
+  border-color: #e8590c;
+  text-decoration: none;
+}
+.original-link svg {
+  flex-shrink: 0;
 }
 </style>
